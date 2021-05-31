@@ -1,5 +1,5 @@
 import '../css/style.css';
-import './fetchCountries';
+import fetchCountries from './fetchCountries';
 import countryCard from '../templates/country-card.hbs';
 import countriesList from '../templates/list-countries.hbs';
 
@@ -12,12 +12,12 @@ inputRef.addEventListener('submit', onSearch);
 
 function onSearch(evt) {
   evt.preventDefault;
-  return (searchQuery = evt.currentTarget.value);
-}
+  searchQuery = evt.target.value;
 
-fetchCountries(italy)
-  .then(renderCountry)
-  .catch(error => console.log(error));
+  fetchCountries(searchQuery)
+    .then(renderCountry)
+    .catch(error => console.log(error));
+}
 
 function renderCountry(country) {
   renderRef.innerHTML(country);
