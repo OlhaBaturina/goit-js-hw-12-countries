@@ -1,17 +1,18 @@
 import '../css/style.css';
 import './fetchCountries';
-import countryCard from '../templates/country.hbs';
+import countryCard from '../templates/country-card.hbs';
+import countriesList from '../templates/list-countries.hbs';
 
 const renderRef = document.querySelector('.js-render');
 const inputRef = document.querySelector('.input-js');
 
-const searchQuery = '';
+let searchQuery = '';
 
 inputRef.addEventListener('submit', onSearch);
 
 function onSearch(evt) {
   evt.preventDefault;
-  searchQuery = evt.currentTarget.value;
+  return (searchQuery = evt.currentTarget.value);
 }
 
 fetchCountries(italy)
