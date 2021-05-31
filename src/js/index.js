@@ -1,4 +1,6 @@
 import '../css/style.css';
+import '@pnotify/core/dist/BrightTheme.css';
+
 import fetchCountries from './fetchCountries';
 import countryCard from '../templates/country-card.hbs';
 import countriesList from '../templates/list-countries.hbs';
