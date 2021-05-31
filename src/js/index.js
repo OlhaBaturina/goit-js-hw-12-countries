@@ -1,7 +1,6 @@
 import '../css/style.css';
+import './fetchCountries';
 import countryCard from '../templates/country.hbs';
-
-import './fetchCountriesies';
 
 const renderRef = document.querySelector('.js-render');
 const inputRef = document.querySelector('.input-js');
