@@ -1,23 +1,23 @@
 {{#each this}}
-
-  <h2 class='name'>{{name}}</h2>
-  <div class='country_card'>
-    <ul class='country_info_card'>
-      <li>Capital: <span class='country_info-value'>{{capital}}</span> </li>
-      <li>Population:
-        <span class='country_info-value'>{{population}}</span>
-      </li>
-      <li>Languages:
-        <ul>
-          {{#each languages}}
-            <li class='country_info-value'>{{this}}</li>
-          {{/each}}
-        </ul>
-      </li>
-    </ul>
-    <div>
-      <img src='{{flag}}' alt='flag of {{name}}' width='300' />
+  <div class='card'>
+    <h2 class='name'>{{name}}</h2>
+    <div class='country_card'>
+      <ul class='country_info_card'>
+        <li>Capital: <span class='country_info-value'>{{capital}}</span> </li>
+        <li>Population:
+          <span class='country_info-value'>{{population}}</span>
+        </li>
+        <li>Languages:
+          <ul>
+            {{#each languages}}
+              <li class='country_info-value'>{{this}}</li>
+            {{/each}}
+          </ul>
+        </li>
+      </ul>
+      <div>
+        <img src='{{flag}}' alt='flag of {{name}}' width='300' />
+      </div>
     </div>
   </div>
-
 {{/each}}
