@@ -62,7 +62,7 @@ body {
   margin-top: 20px;
 
   background-color: rgba(222, 184, 135, 0.050);
-  border: 4px double rgba(110, 95, 80, 0.100);
+
   border-radius: 4px;
 
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
@@ -77,8 +77,4 @@ body {
   font-size: 18px;
   line-height: 1.8; 
   list-style: none;
-}
-
-.country_list-item:hover {
-text-decoration:  underline;
 }

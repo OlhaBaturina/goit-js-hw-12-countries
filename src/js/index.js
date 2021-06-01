@@ -13,7 +13,7 @@ import countriesList from '../templates/list-countries.hbs';
 const renderRef = document.querySelector('.js-render');
 const inputRef = document.querySelector('[data-input="searchQuery"]');
 
-inputRef.addEventListener('input', _.debounce(onSearch, 500));
+inputRef.addEventListener('input', _.debounce(onSearch, 1500));
 
 function onSearch(evt) {
   evt.preventDefault();
@@ -21,14 +21,17 @@ function onSearch(evt) {
   console.log(form.value);
   const searchQuery = form.value.trim();
 if (searchQuery === '') {
-    return error('Empty request, enter your search data')
+    return errorAlert('Empty request, enter your search data')
   }
 
 
   fetchCountries(searchQuery)
     .then(markup)
-    .catch(error => console.log(error));
+    .catch(
+       errorAlert('Not found!')
+ );
 }
+
 
 function renderCountry(country) {
   const cardMarkup = countryCard(country);
@@ -44,13 +47,31 @@ function markup(arrayCountries) {
   if (arrayCountries.length === 1) {
     renderCountry(arrayCountries);
   }
-  if (arrayCountries.length > 1 && arrayCountries.length < 10) {
-    notice('Please select a country from the list');
+  if (arrayCountries.length > 1 && arrayCountries.length <= 10) {
+    warningAlert('Please enter a more precise query');
     renderCountriesList(arrayCountries);
   }
   if (arrayCountries.length > 10) {
     renderRef.innerHTML = '';
-    alert('Too many matches foundю Please enter a more specific query!');
+    warningAlert('Too many matches found. Please enter a more specific query!');
   }
 }
 
+
+function warningAlert(message) {
+  alert({
+    title: 'ALARM',
+    text: `${message}`,
+    delay: 200,
+   
+  });
+}
+
+function errorAlert(message) {
+  error({
+    title: 'ERROR',
+    text: `${message}`,
+    delay: 200,
+
+  });
+}
