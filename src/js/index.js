@@ -11,15 +11,16 @@ import countriesList from '../templates/list-countries.hbs';
 const renderRef = document.querySelector('.js-render');
 const inputRef = document.querySelector('[data-input="searchQuery"]');
 
-inputRef.addEventListener('submit', _.debounce(onSearch, 500));
+inputRef.addEventListener('input', _.debounce(onSearch, 1500));
 
 function onSearch(evt) {
   evt.preventDefault();
-  const form = evt.currentTarget;
-  const searchQuery = form.elements.query.value.trim();
-  if ((searchQuery = '')) {
-    return;
-  }
+  const form = evt.target;
+  console.log(form.value);
+  const searchQuery = form.value.trim();
+  // if ((searchQuery = '')) {
+  //   return;
+  // }
 
   fetchCountries(searchQuery)
     .then(renderCountry)
@@ -29,7 +30,7 @@ function onSearch(evt) {
 function renderCountry(country) {
   const cardMarkup = countryCard(country);
 
-  renderRef.innerHTML(cardMarkup);
+  renderRef.innerHTML = cardMarkup;
 
   // const countryListMarkup = countryCard(countriesList);
 }
