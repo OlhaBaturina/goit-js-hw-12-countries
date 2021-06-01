@@ -1,15 +1,13 @@
 {{#each this}}
+
+  <h2 class='name'>{{name}}</h2>
   <div class='country_card'>
-    <h2 class='name'>{{name}}</h2>
-    <div class='country_flag'>
-      <img src='{{flag}}' alt='flag of {{name}}' width='300' />
-    </div>
-    <ul>
-      <li class='country_info'>Capital: <span class='country_info-value'>{{capital}}</span> </li>
-      <li class='country_info'>Population:
+    <ul class='country_info_card'>
+      <li>Capital: <span class='country_info-value'>{{capital}}</span> </li>
+      <li>Population:
         <span class='country_info-value'>{{population}}</span>
       </li>
-      <li class='country_info'>Languages:
+      <li>Languages:
         <ul>
           {{#each languages}}
             <li class='country_info-value'>{{this}}</li>
@@ -17,5 +15,9 @@
         </ul>
       </li>
     </ul>
+    <div>
+      <img src='{{flag}}' alt='flag of {{name}}' width='300' />
+    </div>
   </div>
+
 {{/each}}
