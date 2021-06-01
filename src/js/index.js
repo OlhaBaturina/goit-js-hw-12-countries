@@ -11,25 +11,25 @@ import countriesList from '../templates/list-countries.hbs';
 const renderRef = document.querySelector('.js-render');
 const inputRef = document.querySelector('[data-input="searchQuery"]');
 
-const cardMarkup = countryCard(fetchCountries);
-const countryListMarkup = countryCard(countriesList);
-
-inputRef.addEventListener('input', _.debounce(onSearch, 500));
+inputRef.addEventListener('submit', _.debounce(onSearch, 500));
 
 function onSearch(evt) {
-  evt.preventDefault;
-  const searchQuery = evt.target.value.trim();
+  evt.preventDefault();
+  const form = evt.currentTarget;
+  const searchQuery = form.elements.query.value.trim();
   if ((searchQuery = '')) {
     return;
   }
-  //  очищаем старую разметку
-  renderRef.innerHTML('');
 
   fetchCountries(searchQuery)
     .then(renderCountry)
     .catch(error => console.log(error));
 }
 
-function renderCountry(cardMarkup) {
+function renderCountry(country) {
+  const cardMarkup = countryCard(country);
+
   renderRef.innerHTML(cardMarkup);
+
+  // const countryListMarkup = countryCard(countriesList);
 }
