@@ -3,11 +3,15 @@ body {
 }
 
 .input {
-  border: 4px double rgba(110, 95, 80, 0.295);
-  padding-left: 5px;
+   width: 300px;
+   height: 28px;
+  border: 4px double rgba(110, 95, 80, 0.695);
+   border-radius: 4px;
+  padding-left: 10px;
   font-style: italic;
   font-size: 14px;
   color: rgb(110, 95, 80);
+
 }
 
 .card {
@@ -49,4 +53,32 @@ body {
 .country_info-value {
   font-weight: normal;
   font-size: 18px;
+}
+
+.country_list{
+  width: 600px;
+  height: auto;
+  padding: 20px;
+  margin-top: 20px;
+
+  background-color: rgba(222, 184, 135, 0.050);
+  border: 4px double rgba(110, 95, 80, 0.100);
+  border-radius: 4px;
+
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.country_list:hover {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2);
+ 
+}
+.country_list-item{
+  font-size: 18px;
+  line-height: 1.8; 
+  list-style: none;
+}
+
+.country_list-item:hover {
+text-decoration:  underline;
 }
