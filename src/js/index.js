@@ -11,7 +11,8 @@ import countriesList from '../templates/list-countries.hbs';
 const renderRef = document.querySelector('.js-render');
 const inputRef = document.querySelector('[data-input="searchQuery"]');
 
-let searchQuery = '';
+const cardMarkup = countryCard(fetchCountries);
+const countryListMarkup = countryCard(countriesList);
 
 inputRef.addEventListener('input', _.debounce(onSearch, 500));
 
@@ -29,6 +30,6 @@ function onSearch(evt) {
     .catch(error => console.log(error));
 }
 
-function renderCountry(country) {
-  renderRef.innerHTML(country);
+function renderCountry(cardMarkup) {
+  renderRef.innerHTML(cardMarkup);
 }
