@@ -1,12 +1,6 @@
 import '../css/style.css';
-
-import '@pnotify/core/dist/BrightTheme.css';
-import '@pnotify/core/dist/BrightTheme.css';
-import '@pnotify/core/dist/PNotify.css';
-import { notice, info, alert, success, error, close } from '@pnotify/core';
-
 import _ from 'lodash';
-
+import { errorAlert, warningAlert } from './errors';
 import fetchCountries from './fetchCountries';
 import countryCard from '../templates/country-card.hbs';
 import countriesList from '../templates/list-countries.hbs';
@@ -14,7 +8,7 @@ import countriesList from '../templates/list-countries.hbs';
 const renderRef = document.querySelector('.js-render');
 const inputRef = document.querySelector('[data-input="searchQuery"]');
 
-inputRef.addEventListener('input', _.debounce(onSearch, 500));
+inputRef.addEventListener('input', _.debounce(onSearch, 1000));
 
 function onSearch(evt) {
   evt.preventDefault();
@@ -52,24 +46,3 @@ function markup(arrayCountries) {
     warningAlert('Too many matches found. Please enter a more specific query!');
   }
 }
-
-function warningAlert(message) {
-  alert({
-    title: 'ALARM',
-    text: message,
-    delay: 2000,
-  });
-}
-
-// 'Not found!';
-function errorAlert(message) {
-  error({
-    title: 'ERROR',
-    text: message,
-    delay: 2000,
-  });
-}
-
-// function errorNotFound(){
-//   errorAlert('Not found!');
-// }
