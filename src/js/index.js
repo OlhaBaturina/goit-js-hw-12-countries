@@ -2,9 +2,10 @@ import '../css/style.css';
 
 import '@pnotify/core/dist/BrightTheme.css';
 import '@pnotify/core/dist/BrightTheme.css';
-import PNotify, { notice, info, alert, success, error, close } from '@pnotify/core';
+import '@pnotify/core/dist/PNotify.css';
+import { notice, info, alert, success, error, close } from '@pnotify/core';
 
-import _ from '../../node_modules/lodash/lodash';
+import _ from 'lodash';
 
 import fetchCountries from './fetchCountries';
 import countryCard from '../templates/country-card.hbs';
@@ -20,18 +21,12 @@ function onSearch(evt) {
   const form = evt.target;
   console.log(form.value);
   const searchQuery = form.value.trim();
-if (searchQuery === '') {
-    return errorAlert('Empty request, enter your search data')
+  if (searchQuery === '') {
+    return errorEmptyAlert();
   }
 
-
-  fetchCountries(searchQuery)
-    .then(markup)
-    .catch(
-       errorAlert('Not found!')
- );
+  fetchCountries(searchQuery).then(markup).catch(errorNotFoundAlert);
 }
-
 
 function renderCountry(country) {
   const cardMarkup = countryCard(country);
@@ -57,21 +52,27 @@ function markup(arrayCountries) {
   }
 }
 
-
 function warningAlert(message) {
   alert({
     title: 'ALARM',
     text: `${message}`,
-    delay: 200,
-   
+    delay: 2000,
   });
 }
 
-function errorAlert(message) {
+// 'Not found!';
+function errorEmptyAlert() {
   error({
     title: 'ERROR',
-    text: `${message}`,
-    delay: 200,
+    text: 'Empty request, enter your search data',
+    delay: 2000,
+  });
+}
 
+function errorNotFoundAlert() {
+  error({
+    title: 'ERROR',
+    text: 'Not found!',
+    delay: 2000,
   });
 }
