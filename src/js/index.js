@@ -14,18 +14,19 @@ import countriesList from '../templates/list-countries.hbs';
 const renderRef = document.querySelector('.js-render');
 const inputRef = document.querySelector('[data-input="searchQuery"]');
 
-inputRef.addEventListener('input', _.debounce(onSearch, 1500));
+inputRef.addEventListener('input', _.debounce(onSearch, 500));
 
 function onSearch(evt) {
   evt.preventDefault();
   const form = evt.target;
+  renderRef.innerHTML = '';
   console.log(form.value);
   const searchQuery = form.value.trim();
   if (searchQuery === '') {
-    return errorEmptyAlert();
+    return errorAlert('Empty request, enter your search data');
   }
 
-  fetchCountries(searchQuery).then(markup).catch(errorNotFoundAlert);
+  fetchCountries(searchQuery).then(markup).catch(console.error);
 }
 
 function renderCountry(country) {
@@ -55,24 +56,20 @@ function markup(arrayCountries) {
 function warningAlert(message) {
   alert({
     title: 'ALARM',
-    text: `${message}`,
+    text: message,
     delay: 2000,
   });
 }
 
 // 'Not found!';
-function errorEmptyAlert() {
+function errorAlert(message) {
   error({
     title: 'ERROR',
-    text: 'Empty request, enter your search data',
+    text: message,
     delay: 2000,
   });
 }
 
-function errorNotFoundAlert() {
-  error({
-    title: 'ERROR',
-    text: 'Not found!',
-    delay: 2000,
-  });
-}
+// function errorNotFound(){
+//   errorAlert('Not found!');
+// }
